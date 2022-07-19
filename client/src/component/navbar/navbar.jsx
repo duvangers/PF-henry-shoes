@@ -70,7 +70,7 @@ export default function Navbar() {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <img src={logotoro} className="d-inline-block align-top" width="30" height="30" alt="logo" />
               <Link className="nav-link active" aria-current="page" to="/">
-                <li className="nav-item">AAAAAAAAAAAAAAAAAAAAAAAAAAA</li>
+                <li className="nav-item">Inicio</li>
               </Link>
               {!userLog.name ? (
                 ''
