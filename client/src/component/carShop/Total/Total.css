@@ -1,0 +1,20 @@
+.Total {
+  max-width: 300px;
+  /* position: relative; */
+  /* left: 1000px; */
+  margin-left: 20px;
+}
+.Total table {
+  background-color: #80808060;
+}
+
+h5 {
+  text-align: left;
+}
+h6 {
+  text-align: left;
+}
+.Total table title {
+  text-align: center;
+  font-weight: bold;
+}

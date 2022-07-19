@@ -1,0 +1,14 @@
+{
+  "name": "henry-shoes",
+  "version": "1.0.0",
+  "main": "",
+  "scripts": {
+    "start": "npm start --prefix api",
+    "install-client": "cd client && npm install && npm run build && cd ..",
+    "install-api": "cd api && npm install && cd .. ",
+    "heroku-postbuild": "npm run install-client && npm run install-api"
+  },
+  "engines": {
+    "node": "16.15.1"
+  }
+}

@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
+
+:root {
+  --font1: "Heebo", sans-serif;
+  --font2: "Fira Sans Extra Condensed", sans-serif;
+  --font3: "Roboto", sans-serif;
+}
+
+.cardShop {
+  max-height: 160px;
+  background-color: white;
+  width: 100%;
+  max-height: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  font-family: var(--font1);
+  padding: 20px 10px 20px 10px;
+  // margin: 5px;
+  // border: 1px solid red;
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.74);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+
+  hr {
+    margin: 1px;
+  }
+  .image {
+    display: flex;
+    flex-direction: column;
+    // border: 1px solid violet;
+    align-content: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 4px;
+    img {
+      width: 100px;
+      height: 100px;
+    }
+    .ratings {
+      position: absolute;
+      bottom: 10px;
+    }
+  }
+  .d1 {
+    // position: relative;
+    display: flex;
+    flex-direction: column;
+    // border: 1px solid blue;
+    align-content: space-between;
+    justify-content: space-between;
+
+    .title {
+      color: black;
+    }
+    .detailItem {
+      text-align: left;
+      margin-bottom: 15px;
+      font-size: 14px;
+      display: flex;
+      // width: 50%;
+      .itemKey {
+        font-weight: bold;
+        color: gray;
+        margin-right: 5px;
+        min-width: 50px;
+      }
+
+      .itemValue {
+        font-weight: 300;
+        min-width: 40px;
+      }
+    }
+    .actions {
+      // position: absolute;
+      // bottom: 0;
+      align-self: flex-end;
+      i {
+        cursor: pointer;
+        color: rgb(76, 71, 71);
+        label {
+          margin: 5px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .prices {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid lightgray;
+    align-content: center;
+    justify-content: center;
+
+    hr {
+      width: 100%;
+      // height: 2px;
+      color: black;
+    }
+    .block {
+      // border: 1px solid red;
+      width: 100%;
+      margin: 5px;
+      // text-align: left;
+      // margin-bottom: 15px;
+      // // font-size: 16px;
+      // display: flex;
+      // flex-direction: row;
+      // // max-width: 400px;
+      // justify-content: space-between;
+      .name {
+        // font-weight: bold;
+        // color: gray;
+        font-size: 14px;
+        // margin-right: 5px;
+        // min-width: 50px;
+      }
+      .value {
+        // font-weight: 300;
+        // min-width: 40px;
+      }
+      .total-value {
+        font-weight: bold;
+        // font-weight: 300;
+        // min-width: 40px;
+      }
+    }
+  }
+  //   .d2 {
+  //     display: flex;
+  //     flex-direction: column;
+  //   }
+  //   .d3 {
+  //     display: flex;
+  //     flex-direction: column;
+  //   }
+  //   display: flex;
+  //   flex-direction: column;
+  //   .prices {
+  //   }
+}
+
+// .middleDetails {
+//   display: flex;
+//   align-items: flex-start;
+//   flex-direction: column;
+//   /* justify-content: center; */
+//   min-width: 22%;
+// }
+
+// .amount {
+//   min-width: 100px;
+//   padding: 2% 0 2% 0;
+// }
+// /* .middleDetails h5 {
+//   align-self: flex-start;
+// } */
+// .form {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+// .input {
+//   width: 50px;
+//   border-radius: 5px;
+//   border: 1px solid gray;
+// }
+// .actions {
+//   display: inline-flex;
+//   flex-wrap: wrap;
+//   flex-direction: row;
+//   justify-content: space-around;
+//   align-self: flex-end;
+// }
+// .actions i {
+//   margin-top: 2px;
+//   cursor: pointer;
+//   transition: all 0.5s;
+//   width: 80px;
+//   padding: 1%;
+// }
+
+// .endDetails {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   max-width: 22%;
+// }
+// .title {
+//   display: inline-flex;
+// }
+// .title p {
+//   font-weight: bold;
+// }
+// .numberTotal p {
+//   font-weight: bold;
+// }
+// label {
+//   font-weight: bold;
+// }
+// .submitBtn {
+//   display: block;
+//   /* margin-left: auto; */
+//   padding: 5px 10px;
+//   border: none;
+//   /* background-color: #00800060; */
+//   /* color: white; */
+//   border-radius: 6px;
+//   cursor: pointer;
+//   font-size: 16px;
+//   /* margin-top: 30px; */
+//   color: white;
+// }
+// .submitBtn i {
+//   color: white;
+// }
+// .submitBtn:hover {
+//   /* background-color: #9867c5; */
+//   transform: translateY(-2px);
+// }
