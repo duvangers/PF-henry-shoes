@@ -1,0 +1,51 @@
+
+.cellImg {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+}
+.activa{
+      color: chartreuse;
+      font-family: "Roboto","Helvetica","Arial",sans-serif;
+      font-weight: 400;
+      line-height: 1.43;
+      letter-spacing: 0.01071em;
+      display: table-cell;
+      vertical-align: inherit;
+      font-size: 0.875rem;
+      text-align: right;
+      padding: 16px;
+      flex-direction: row-reverse;
+      /* background-color:chartreuse; */
+}
+.proceso{
+      color: blue;
+      font-family: "Roboto","Helvetica","Arial",sans-serif;
+      font-weight: 400;
+      line-height: 1.43;
+      letter-spacing: 0.01071em;
+      display: table-cell;
+      vertical-align: inherit;
+      font-size: 0.875rem;
+      text-align: right;
+      padding: 16px;
+      flex-direction: row-reverse;
+      /* background-color:rgb(87, 171, 250); */
+
+}
+.fin{
+      color: rgb(243, 61, 61);
+      font-family: "Roboto","Helvetica","Arial",sans-serif;
+      font-weight: 400;
+      line-height: 1.43;
+      letter-spacing: 0.01071em;
+      display: table-cell;
+      vertical-align: inherit;
+      font-size: 0.875rem;
+      text-align: right;
+      padding: 16px;
+      flex-direction: row-reverse;
+      /* background-color: rgb(243, 61, 61) */
+}

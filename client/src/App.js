@@ -24,6 +24,7 @@ import DetailAdmin from "./panelAdmin/single/DetailAdmin";
 import HomeUser from "./panelUser/homeUser/HomeUser";
 import ListOrders from "./panelUser/listOrders/ListOrdenes";
 import DetailUser from "./panelUser/userDetail/userDetail";
+import Review from "./panelUser/ratingReviews/rating";
 
 import { useSelector } from "react-redux";
 
@@ -61,6 +62,7 @@ function App() {
             <Route path="orders" element={<ListOrders />} />
             <Route path="profile" element={<DetailUser />} />
             <Route path="update" element={<HomeUser />} />
+            <Route path="reviews" element={<Review/>} />
           </Route>
         )}
       </Routes>

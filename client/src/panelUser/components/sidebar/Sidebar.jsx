@@ -1,12 +1,13 @@
 import "./sidebar.scss";
 import { useEffect } from "react";
-import DashboardIcon from "@mui/icons-material/Dashboard";
+import CommentIcon from '@mui/icons-material/Comment';
+// import DashboardIcon from "@mui/icons-material/Dashboard";
 // import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 // import CreditCardIcon from "@mui/icons-material/CreditCard";
 // import StoreIcon from "@mui/icons-material/Store";
 // import InsertChartIcon from "@mui/icons-material/InsertChart";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
+// import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 // import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 // import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
@@ -37,6 +38,7 @@ const Sidebar = () => {
     dispatch(getAllOrdersUser(userDetails.id));
     dispatch(getLogin(user));
   }, [dispatch, userDetails]);
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -70,6 +72,13 @@ const Sidebar = () => {
             <li>
               <LocalShippingIcon className="icon" />
               <span>Orders</span>
+            </li>
+          </Link>
+
+          <Link to="/user/reviews" class style={{ textDecoration: "none" }}>
+            <li>
+            <CommentIcon className="icon" />
+              <span>Reviews</span>
             </li>
           </Link>
 
