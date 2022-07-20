@@ -2,6 +2,16 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import Link from '@mui/material/Link';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
+
+const HalfRating = ({v}) => {
+  return (
+    <Stack spacing={1}>
+      <Rating name="half-rating-read" defaultValue={3} precision={1} readOnly />
+    </Stack>
+  );
+}
 
 const ExpandableCell = ({ value }) => {
   const [expanded, setExpanded] = React.useState(false);
@@ -25,10 +35,14 @@ const ExpandableCell = ({ value }) => {
 };
 
 const columns = [
-  { field: 'id' },
+  { field: 'id', width: 50 },
   { field: 'img' },
   { field: 'name' },
-  { field: 'rating', type: 'number' },
+  { field: 'rating',
+   type: 'number',
+   width: 140,
+   renderCell: (params) => <HalfRating {...params} /> , 
+  },
   {
     field: 'reviews',
     width: 550,
@@ -37,9 +51,10 @@ const columns = [
 ];
 
 const rows = [
-  { id: 1, img: "img" , name: "name", rating: 3, reviews: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus, lorem vel mattis aliquet, purus lorem tincidunt mauris, in blandit quam risus sed ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-  { id: 2, img: "img" , name: "name",  rating: 4, reviews: "Vestibulum in massa nibh. Nulla venenatis justo non felis vulputate, eu mollis metus ornare. Vestibulum in massa nibh" }
+  { id: 1, img: "img" , name: "Jordan", rating: 3, reviews: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus, lorem vel mattis aliquet, purus lorem tincidunt mauris, in blandit quam risus sed ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+  { id: 2, img: "img" , name: "Shame",  rating: 4, reviews: "Vestibulum in massa nibh. Nulla venenatis justo non felis vulputate, eu mollis metus ornare. Vestibulum in massa nibh" }
 ];
+
 
 
 // for (let i = 0; i < 200; i += 1) {
