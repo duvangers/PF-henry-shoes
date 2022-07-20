@@ -32,6 +32,19 @@ export const getAllOrders = () => {
   }
 }
 
+export const getAllUserReviews = id => {
+  return async function (dispatch) {
+    try {
+      let info = await Axios(`/reviewsUser/${id}`)
+      return dispatch({
+        type: actionTypes.GET_ALL_USER_REVIEWS,
+        payload: info.data,
+      })
+    } catch (error) {
+      console.log(error.response)
+    }
+  }
+}
 export const getAllOrdersUser = id => {
   return async function (dispatch) {
     try {
