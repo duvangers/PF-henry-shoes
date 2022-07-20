@@ -2,8 +2,7 @@ import Axios from 'axios'
 import * as actionTypes from '../action-types'
 import Sweal from 'sweetalert2'
 
-//Axios.defaults.baseURL = 'https://app-henry-shoes.herokuapp.com/api'
-Axios.defaults.baseURL = 'http://localhost:3001/api'
+Axios.defaults.baseURL = 'https://app-henry-shoes.herokuapp.com/api'
 
 export const getUsers = () => {
   return async function (dispatch) {
