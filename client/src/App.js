@@ -58,7 +58,7 @@ function App() {
         ) : (
           <Route path="user">
             {/* <Route index element={<HomeUser />} /> */}
-            <Route index element={<Review />} />
+            <Route index element={<DetailUser />} />
             <Route path="orders" element={<ListOrders />} />
             <Route path="profile" element={<DetailUser />} />
             <Route path="update" element={<HomeUser />} />
