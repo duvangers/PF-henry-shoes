@@ -6,14 +6,14 @@ import "./home.scss";
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getAllOrdersUser, getAllUserReviews } from "../../redux/actions"
+// import { getAllOrdersUser, getAllUserReviews } from "../../redux/actions"
 
 
 const HomeUser = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllOrdersUser(1));
-    dispatch(getAllUserReviews(1));
+    // dispatch(getAllOrdersUser(1));
+    // dispatch(getAllUserReviews(1));
   }, [dispatch]);
  
   return (
