@@ -1,13 +1,14 @@
 import './list.scss'
 import Sidebar from '../components/sidebar/Sidebar'
-import Navbar from '../components/navbar/Navbar'
 
 import TableReviews from '../components/ratingReviews/table'
+import Navbar from '../components/navbar/Navbar'
 
 
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllUserReviews } from '../../redux/actions'
+import { getAllUserReviews } from '../../redux/actions/index'
+
 
 const ListReviewsUser = () => {
   const dispatch = useDispatch()
@@ -16,15 +17,17 @@ const ListReviewsUser = () => {
   useEffect(() => {
     dispatch(getAllUserReviews(1))
   }, [dispatch, userDetails])
-  // const reviews = useSelector(state => state.ReviewsUser)
-
-
+  const reviews = useSelector(state => state.ReviewsUser)
+  const Review = reviews.reviews
   return (
     <div className="list">
       <Sidebar />
       <div className="listContainer">
         <Navbar />
-        <TableReviews  />
+         { Review ? (
+        <TableReviews reviews={Review} />
+        ): (<div> No hay Reviews Disponibles </div>)
+         }
       </div>
     </div>
   )

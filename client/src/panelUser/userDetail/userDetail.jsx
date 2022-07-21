@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 
-import { getAllOrdersUser, updateUserDetails, getLogin } from '../../redux/actions'
+import { getAllOrdersUser, updateUserDetails, getLogin, getAllUserReviews } from '../../redux/actions'
 
 import Sidebar from '../components/sidebar/Sidebar'
 import Navbar from '../components/navbar/Navbar'
@@ -34,6 +34,7 @@ const UserDetail = () => {
 
   useEffect(() => {
     dispatch(getAllOrdersUser(userDetails.id))
+    dispatch(getAllUserReviews(1))
   }, [dispatch, userDetails])
 
   const { isAuthenticated, loginWithRedirect, user } = useAuth0()
