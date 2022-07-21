@@ -310,37 +310,41 @@ export const createGenders = (gender) => {
   };
 };
 
-export function getLogin(user) {
-  return function (dispatch) {
-    return Axios.post("/login", user).then((response) => {
-      dispatch({
-        type: actionTypes.LOGIN_USER,
+
+export function userLogin(data) {
+  return async function (dispatch) {
+    try {
+      const response = await Axios.post('/login', data)
+      return dispatch({
+        type: actionTypes.USER_LOGIN,
         payload: response.data,
-      });
-    });
-  };
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 }
 
-export function delLogin() {
+export function userLogout() {
   return function (dispatch) {
     return {
-      type: actionTypes.DEL_LOGIN,
-    };
-  };
+
+      type: actionTypes.USER_LOGOUT,
+    }
+  }
+
 }
 
 export function createOrden(payload, userId) {
   return async function (dispatch) {
     try {
-      const response = await Axios.post(`/ordens/${userId}`, payload);
-      // console.log(response);
-      // return dispatch({
-      //   type: actionTypes.CREATE_ORDEN,
-      //   payload: response.response.data.msg,
-      // });
-      Sweal.fire("Orden creada con éxito!", `${response.data.msg}`, "success");
+
+      const response = await Axios.post(`/ordens/${userId}`, payload)
+      Sweal.fire('Orden creada con éxito!', `${response.data.msg}`, 'success')
     } catch (error) {
-      Sweal.fire("Ups hubo un error", `${error.response.data.msg}`, "error");
+      Sweal.fire('Ups hubo un error', `${error.response.data.msg}`, 'error')
+      console.log(error.response)
     }
   };
 }

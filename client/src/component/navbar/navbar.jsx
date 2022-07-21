@@ -4,36 +4,38 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import {
-  getAllCategories,
-  getAllBrands,
-  getFilterCategories,
-  getFilterBrands,
-} from "../../redux/actions";
-import { LoginButton } from "../login/login";
-import { LogoutButton } from "../login/logout";
+
+import { getAllCategories, getAllBrands, getFilterCategories, getFilterBrands, userLogin, userLogout } from '../../redux/actions'
+
 
 import GeneralFilter from "./GeneralFilter";
 import SearchBar from "./SearchBar";
 
-import logotoro from "../../logotoro.png";
-import Avatar from "@mui/material/Avatar";
-import { deepPurple } from "@mui/material/colors";
+
+import logotoro from '../../logotoro.png'
+import Avatar from '@mui/material/Avatar'
+import SettingsIcon from '@mui/icons-material/Settings'
 
 export default function Navbar() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllBrands());
-    dispatch(getAllCategories());
-  }, [dispatch]);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const categories = useSelector((state) => state.Categories);
-  const brands = useSelector((state) => state.Brands);
-  const userLog = useSelector((state) => state.UserLog);
-  const [nameSearch, setNameSearch] = useState("");
-  const carrito = useSelector((state) => state.Carrito);
-  const userDetails = useSelector((state) => state.UserLog);
-  const navigate = useNavigate();
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0()
+
+  useEffect(() => {
+    if (user) dispatch(userLogin(user))
+
+    dispatch(getAllBrands())
+    dispatch(getAllCategories())
+  }, [dispatch, user])
+
+  const categories = useSelector(state => state.Categories)
+  const brands = useSelector(state => state.Brands)
+  const userLog = useSelector(state => state.UserLog)
+  const [nameSearch, setNameSearch] = useState('')
+  const carrito = useSelector(state => state.Carrito)
+  const userDetails = useSelector(state => state.UserLog)
+
 
   const filterCategory = (e) => {
     navigate("/filters");
@@ -45,19 +47,20 @@ export default function Navbar() {
     dispatch(getFilterBrands(e));
   };
 
-  const { isAuthenticated } = useAuth0();
 
-  const avatar_url = userDetails.avatar_url && userDetails.avatar_url;
-  const name = userDetails.name ? userDetails.name.slice(0, 1) : "";
+  const navigateRoute = (event, route) => {
+    event.preventDefault()
+    navigate(route)
+  }
+
+  const handleClickLogout = event => {
+    logout()
+    dispatch(userLogout())
+  }
 
   return (
-    <div style={{ height: "80px" }}>
-      <div className="collapse" id="navbarToggleExternalContent">
-        <div className="bg-dark p-4">
-          <h5 className="text-white h4">Collapsed content</h5>
-          <span className="text-muted">Toggleable via the navbar brand.</span>
-        </div>
-      </div>
+    <div style={{ height: '80px' }}>
+
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <button
@@ -83,8 +86,10 @@ export default function Navbar() {
               <Link className="nav-link active" aria-current="page" to="/">
                 <li className="nav-item">Inicio</li>
               </Link>
-              {!userLog.name ? (
-                ""
+
+              {!isAuthenticated ? (
+                ''
+
               ) : userLog.roleId === 1 ? (
                 <Link
                   className="nav-link active"
@@ -152,53 +157,58 @@ export default function Navbar() {
                   )}
                 </Link>
               </li>
-              {isAuthenticated ? (
-                <>
-                  {/* <Link
-                    className="nav-link active"
-                    aria-current="page"
-                    to="/infoperfil"
-                  >
-                    Perfil
-                  </Link> */}
-                  <div className="items">
-                    <div className="item">{userDetails.name}</div>
-                    <div className="item">
-                      <img
-                        src={userDetails.avatar_url}
-                        alt=""
-                        className="avatar"
-                      />
-                    </div>
-                  </div>{" "}
-                  <li className="nav-item">
-                    <LogoutButton
-                      style={{ border: "1px solid gray" }}
-                    ></LogoutButton>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className="nav-item">
-                    <LoginButton></LoginButton>
-                  </li>
-                </>
-              )}
-              <Link
-                className="nav-link active"
-                aria-current="page"
-                to="/paneladmin"
-              >
-                <li className="nav-item">Panel Admin</li>
-              </Link>
+
             </ul>
 
-            <SearchBar
-              dispatch={dispatch}
-              name={nameSearch}
-              setName={setNameSearch}
-              navigate={navigate}
-            />
+            <SearchBar dispatch={dispatch} name={nameSearch} setName={setNameSearch} navigate={navigate} />
+
+            {isAuthenticated ? (
+              <div className="d-flex align-items-center">
+                <div className="m-2">
+                  <Avatar src={userDetails.avatar_url} />
+                </div>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <SettingsIcon />
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    <li>
+                      <a class="dropdown-item disabled" href="" onClick={event => navigateRoute(event, '/ordens')}>
+                        {user && user.name}
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="" onClick={event => navigateRoute(event, '/user/orders')}>
+                        Ordenes
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="" onClick={event => navigateRoute(event, '/user/profile')}>
+                        Cuenta
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="" onClick={event => handleClickLogout()}>
+                        Desconectar
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <button type="button" class="btn btn-primary p-1 mx-2" onClick={event => loginWithRedirect()}>
+                  Ingresar
+                </button>
+              </div>
+            )}
+
           </div>
         </div>
       </nav>

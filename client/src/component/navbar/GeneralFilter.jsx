@@ -5,10 +5,6 @@ export default function GeneralFilter({ categories, funtionFilter }) {
 
   return (
     <ul className="dropdown-menu" placeholder="hola" aria-labelledby="navbarDropdown">
-      {/* <li>
-        <hr className="dropdown-divider" />
-      </li> */}
-
       <div className="dropdown-item" id="All" onClick={e => handleClick(e)}>
         All
       </div>
