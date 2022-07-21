@@ -22,4 +22,6 @@ app.use((req, res, next) => {
 
 app.use('/api', routes)
 
+app.disable('etag')
+
 module.exports = app
