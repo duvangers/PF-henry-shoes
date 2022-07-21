@@ -11,16 +11,17 @@ function ChooseType({ type, setType, options }) {
 
   return (
     <div>
-      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-standard-label">
-          Elegir Gráfica
+      <FormControl fullWidth size="small" sx={{ width: 220 }}>
+        <InputLabel id="select-label" sx={{ fontSize: "14px" }} size="small">
+          Tipo
         </InputLabel>
         <Select
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
+          labelId="label"
+          id="select"
           value={type}
           onChange={handleChange}
           label="Age"
+          sx={{ height: "28px" }}
         >
           {options?.map((o, i) => {
             return (
