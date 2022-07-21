@@ -18,7 +18,7 @@ import "./data.scss";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import { useState } from "react";
 import ChangeState from "./ChangeState";
-
+import moment from "moment";
 function Row({
   ordenId,
   amount_total,
@@ -105,7 +105,8 @@ function Row({
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
                 History:{" "}
-                {`${createdAt.slice(0, -14)} - ${createdAt.slice(-13, 19)}`}
+                {/* {`${createdAt.slice(0, -14)} - ${createdAt.slice(-13, 19)}`} */}
+                {moment(createdAt).format("ddd, HH:mm a")}
               </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>

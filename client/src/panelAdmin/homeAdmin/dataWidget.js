@@ -48,7 +48,7 @@ export const dataEarning = {
 export const dataProducts = {
   title: "Productos",
   isMoney: false,
-  link: "Ver productps",
+  link: "Ver productos",
   linkTo: "products",
   icon: (
     <AccountBalanceWalletOutlinedIcon

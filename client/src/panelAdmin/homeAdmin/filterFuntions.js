@@ -52,42 +52,89 @@ export const groups = (() => {
 
 export const datas = [
   {
-    createdAt: "2022-07-20T14:10:45.540Z",
+    createdAt: "2022-07-21T14:10:45.540Z",
     price_total: 100,
+    state: "En proceso",
   },
   {
-    createdAt: "2022-07-20T15:28:45.540Z",
+    createdAt: "2022-07-21T15:28:45.540Z",
     price_total: 200,
+    state: "Cancelada",
   },
-  { createdAt: "2022-07-20T15:38:45.540Z", price_total: 424 },
+  { createdAt: "2022-07-21T15:38:45.540Z", price_total: 424 },
   {
-    createdAt: "2022-07-20T16:48:45.540Z",
+    createdAt: "2022-07-21T16:48:45.540Z",
     price_total: 123,
+    state: "Entregada",
   },
   {
     createdAt: "2022-07-19T17:28:45.540Z",
     price_total: 102,
+    state: "Entregada",
   },
-  { createdAt: "2022-07-18T14:28:45.540Z", price_total: 240 },
-  { createdAt: "2022-07-19T14:28:45.540Z", price_total: 1258 },
-  { createdAt: "2022-07-18T15:38:45.540Z", price_total: 424 },
+  {
+    createdAt: "2022-07-18T14:28:45.540Z",
+    price_total: 240,
+    state: "En camino",
+  },
+  {
+    createdAt: "2022-07-19T14:28:45.540Z",
+    price_total: 1258,
+    state: "Entregada",
+  },
+  {
+    createdAt: "2022-07-18T15:38:45.540Z",
+    price_total: 424,
+    state: "Entregada",
+  },
   {
     createdAt: "2022-07-20T16:48:45.540Z",
     price_total: 123,
+    state: "En proceso",
   },
   {
     createdAt: "2022-07-20T17:28:45.540Z",
     price_total: 102,
+    state: "En proceso",
   },
-  { createdAt: "2022-07-15T14:28:45.540Z", price_total: 240 },
-  { createdAt: "2022-07-16T14:28:45.540Z", price_total: 1258 },
-  { createdAt: "2022-10-17T14:28:45.540Z", price_total: 124 },
-  { createdAt: "2022-09-17T14:28:45.540Z", price_total: 500 },
-  { createdAt: "2022-08-18T14:28:45.540Z", price_total: 100 },
-  { createdAt: "2022-08-18T14:28:45.540Z", price_total: 500 },
+  {
+    createdAt: "2022-07-15T14:28:45.540Z",
+    price_total: 240,
+    state: "En proceso",
+  },
+  {
+    createdAt: "2022-07-16T14:28:45.540Z",
+    price_total: 1258,
+    state: "En proceso",
+  },
+  {
+    createdAt: "2022-10-17T14:28:45.540Z",
+    price_total: 124,
+    state: "En proceso",
+  },
+  {
+    createdAt: "2022-09-17T14:28:45.540Z",
+    price_total: 500,
+    state: "En proceso",
+  },
+  {
+    createdAt: "2022-08-18T14:28:45.540Z",
+    price_total: 100,
+    state: "En proceso",
+  },
+  {
+    createdAt: "2022-08-18T14:28:45.540Z",
+    price_total: 500,
+    state: "En camino",
+  },
   {
     createdAt: "2020-02-05T14:28:45.540Z",
     price_total: 1000,
+    state: "Entregada",
   },
-  { createdAt: "2020-12-24T11:19:19.034Z", price_total: 40 },
+  {
+    createdAt: "2020-12-24T11:19:19.034Z",
+    price_total: 40,
+    state: "Entregada",
+  },
 ];
