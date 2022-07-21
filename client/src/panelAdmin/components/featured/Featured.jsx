@@ -1,12 +1,5 @@
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { CircularProgressbar } from "react-circular-progressbar";
-// import "react-circular-progressbar/dist/styles.css";
 import "./featured.scss";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
-
-import { PieChart, Pie, Sector, Cell, Label, Legend } from "recharts";
-
+import { PieChart, Pie, Cell, Label } from "recharts";
 const Featured = ({ value, price_total, title, dataFeatured }) => {
   const COLORS = ["#00C49F", "#0088FE", "#FFBB28", "#ff5842"];
 
@@ -17,18 +10,9 @@ const Featured = ({ value, price_total, title, dataFeatured }) => {
         <p className="title"> {title}</p>
       </div>
       <div className="bottom">
-        {/* <div className="featuredChart"> */}
-        {/* <CircularProgressbar
-            value={value}
-            text={}
-            strokeWidth={5}
-          /> */}{" "}
         <PieChart width={180} height={120}>
-          {/* <Legend layout="vertical" verticalAlign="top" align="right" /> */}
           <Pie
             data={dataFeatured}
-            // cx={0}
-            // cy={0}
             innerRadius={40}
             outerRadius={55}
             fill="#8884d8"
@@ -47,7 +31,6 @@ const Featured = ({ value, price_total, title, dataFeatured }) => {
               />
             ))}
           </Pie>
-          {/* <Legend layout="horizontal" verticalAlign="top" align="center" /> */}
         </PieChart>
         <div className="legend">
           {dataFeatured?.map((e) => (

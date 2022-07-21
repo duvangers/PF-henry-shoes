@@ -5,8 +5,7 @@ import "./home.scss";
 import Widget from "../components/widget/Widget";
 import Featured from "../components/featured/Featured";
 import Chart from "../components/chart/Chart";
-import Table from "../components/table/Table";
-import { dataProducts, dataEarning, dataOrder, dataUser } from "./dataWidget";
+import { dataProducts, dataOrder, dataUser } from "./dataWidget";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrders, getAllShoes, getUsers } from "../../redux/actions";
 import ChooseType from "../components/chart/ChooseType";
@@ -36,7 +35,7 @@ const HomeAdmin = () => {
     newUsers = filterToday(allUsers),
     newOrders = filterToday(allOrders),
     newShoes = filterToday(allShoes),
-    dataToday = filterToday(datas, options[type].equal),
+    dataToday = filterToday(allOrders, options[type].equal),
     data = dataToGraph(groupBy(dataToday, groups[options[type].groupBy]));
 
   const finished = dataToday.filter((o) => o.state === "Entregada"),
@@ -61,12 +60,6 @@ const HomeAdmin = () => {
       amount: allOrders.length,
       diff: newOrders.length,
     },
-    earnings = {
-      amount: allOrders
-        .map((product) => product.price_total)
-        .reduce((prev, curr) => prev + curr, 0),
-      diff: 20,
-    },
     products = {
       amount: allShoes.length,
       diff: newShoes.length,
@@ -80,7 +73,6 @@ const HomeAdmin = () => {
         <div className="widgets">
           <Widget data={{ ...dataUser, ...users }} />
           <Widget data={{ ...dataOrder, ...orders }} />
-          {/* <Widget data={{ ...dataEarning, ...earnings }} /> */}
           <Widget data={{ ...dataProducts, ...products }} />
         </div>
         <div className="charts">
@@ -96,10 +88,6 @@ const HomeAdmin = () => {
             <Chart title={null} aspect={2 / 1} data={data} />
           </div>
         </div>
-        {/* <div className="listContainer">
-          <div className="listTitle">Latest Transactions</div>
-          <Table />
-        </div> */}
       </div>
     </div>
   );
