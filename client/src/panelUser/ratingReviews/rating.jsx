@@ -14,9 +14,9 @@ const ListReviewsUser = () => {
   const userDetails = useSelector(state => state.UserLog)
 
   useEffect(() => {
-    dispatch(getAllUserReviews(userDetails.id))
+    dispatch(getAllUserReviews(1))
   }, [dispatch, userDetails])
-//   const reviews = useSelector(state => state.ReviewsUser)
+  // const reviews = useSelector(state => state.ReviewsUser)
 
 
   return (
