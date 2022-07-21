@@ -13,6 +13,14 @@
 
     .charts {
       padding: 5px 20px;
+      align-items: center;
+      justify-content: center;
+      .featured {
+        flex: 1;
+      }
+      .graph {
+        flex: 2;
+      }
     }
 
     .listContainer {

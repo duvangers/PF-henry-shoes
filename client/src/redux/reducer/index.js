@@ -46,7 +46,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         Orders: action.payload,
       };
-      case actionTypes.GET_ALL_USER_REVIEWS:
+    case actionTypes.GET_ALL_USER_REVIEWS:
       return {
         ...state,
         ReviewsUser: action.payload,
@@ -238,6 +238,10 @@ const rootReducer = (state = initialState, action) => {
     case actionTypes.CREATE_ORDEN:
       Swal.fire("Orden creada con éxito!", `${action.payload}`, "success");
 
+      return {
+        ...state,
+      };
+    case actionTypes.UPDATE_ORDEN:
       return {
         ...state,
       };
