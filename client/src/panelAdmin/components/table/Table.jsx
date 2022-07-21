@@ -57,7 +57,7 @@ const List = () => {
       date: "1 March",
       amount: 2000,
       method: "Online",
-      status: "Pending",
+      status: "Rejected",
     },
   ];
   return (

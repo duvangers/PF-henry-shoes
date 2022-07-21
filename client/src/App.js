@@ -42,13 +42,13 @@ function App() {
         <Route exact path="/filters" element={<GeneralContainer />} />
         <Route exact path="/carshop" element={<CarShopContainer />} />
         <Route exact path="/infoperfil" element={<InfoProfile />} />
+        <Route exact path="/paneladmin" element={<HomeAdmin />} />
         {!userLog.name ? (
           ""
         ) : userLog.roleId === 1 ? (
           <Route path="admin">
             {/* <Route index element={<DashBoard />} /> */}
-            {/* <Route index element={<HomeAdmin />} /> */}
-            <Route index element={<ListClients />} />
+            <Route index element={<HomeAdmin />} />
             <Route path="products/new" element={<New />} />
             <Route path="products" element={<ListProductsAdmin />} />
             <Route path="clients" element={<ListClients />} />
@@ -62,7 +62,7 @@ function App() {
             <Route path="orders" element={<ListOrders />} />
             <Route path="profile" element={<DetailUser />} />
             <Route path="update" element={<HomeUser />} />
-            <Route path="reviews" element={<Review/>} />
+            <Route path="reviews" element={<Review />} />
           </Route>
         )}
       </Routes>
