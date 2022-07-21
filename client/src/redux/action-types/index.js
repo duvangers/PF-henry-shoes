@@ -10,14 +10,7 @@ export const GET_ALL_ORDERS = 'GET_ALL_ORDERS'
 
 export const GET_ALL_ORDERS_USER = 'GET_ALL_ORDERS_USER'
 
-<<<<<<< HEAD
-export const GET_ALL_USER_REVIEWS = "GET_ALL_USER_REVIEWS";
-
-export const GET_SHOES_DETAILS = "GET_SHOES_DETAILS";
-export const CLEAN_DETAIL = "CLEAN_DETAIL";
-=======
 export const GET_ALL_USER_REVIEWS = 'GET_ALL_USER_REVIEWS'
->>>>>>> main
 
 export const GET_SHOES_DETAILS = 'GET_SHOES_DETAILS'
 export const CLEAN_DETAIL = 'CLEAN_DETAIL'
