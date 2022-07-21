@@ -4,7 +4,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Link } from "react-router-dom";
 
 const Widget = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   return (
     <div className="widget">
       <div className="left">

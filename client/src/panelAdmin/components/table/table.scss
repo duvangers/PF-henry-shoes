@@ -17,12 +17,21 @@
     border-radius: 5px;
 
     &.Approved {
+      color: rgb(26, 26, 245);
+      background-color: rgba(0, 9, 128, 0.151);
+    }
+
+    &.Pending {
+      color: rgb(206, 154, 23);
+      background-color: rgba(189, 173, 3, 0.103);
+    }
+    &.Finished {
       color: green;
       background-color: rgba(0, 128, 0, 0.151);
     }
-    &.Pending {
-      color: goldenrod;
-      background-color: rgba(189, 189, 3, 0.103);
+    &.Rejected {
+      color: red;
+      background-color: rgba(189, 12, 3, 0.214);
     }
   }
 }

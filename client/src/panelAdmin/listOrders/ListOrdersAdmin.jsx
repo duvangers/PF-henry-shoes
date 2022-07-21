@@ -1,22 +1,19 @@
-import './list.scss'
-import Sidebar from '../components/sidebar/Sidebar'
-import CollapsibleTable from '../components/dataAllOrders/TableOrders'
-import Navbar from '../components/navbar/Navbar'
+import "./list.scss";
+import Sidebar from "../components/sidebar/Sidebar";
+import CollapsibleTable from "../components/dataAllOrders/TableOrders";
+import Navbar from "../components/navbar/Navbar";
 
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllOrders } from '../../redux/actions'
-
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllOrders } from "../../redux/actions";
 
 const ListOrders = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllOrders())
-   
-  }, [dispatch])
-  const allOrders = useSelector(state => state.Orders)
-console.log(allOrders)
+    dispatch(getAllOrders());
+  }, [dispatch]);
+  const allOrders = useSelector((state) => state.Orders);
 
   return (
     <div className="list">
@@ -26,6 +23,6 @@ console.log(allOrders)
         <CollapsibleTable allOrders={allOrders} />
       </div>
     </div>
-  )
-}
-export default ListOrders
+  );
+};
+export default ListOrders;
