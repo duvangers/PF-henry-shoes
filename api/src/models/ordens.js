@@ -19,6 +19,11 @@ const Ordens = sequelize => {
       allowNull: false,
       defaultValue: 'En proceso',
     },
+    formapago: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'efectivo',
+    },
     view: {
       type: DataTypes.INTEGER,
       allowNull: false,
