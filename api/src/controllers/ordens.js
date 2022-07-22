@@ -14,7 +14,7 @@ const getOrdens = async (req, res) => {
 
 const createOrden = async (req, res) => {
     const { userId: id } = req.params
-    const { details, price_total, amount_total } = req.body
+    const { details, price_total, amount_total, metodopago } = req.body
 
     const updateStock = (arraySizes, size, amount) => {
         const obj = arraySizes.find(obj => obj.size === size)
@@ -60,7 +60,8 @@ const createOrden = async (req, res) => {
         const order = await modelOrdens.create({
             amount_total,
             price_total,
-            details
+            details,
+            metodopago
         })
 
         let relProduct = details.map(obj => obj.productID)
