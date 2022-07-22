@@ -5,15 +5,15 @@ import Featured from "../components/featured/feactured";
 import "./home.scss";
 
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllOrdersUser } from "../../redux/actions"
+import { useDispatch } from "react-redux";
+// import { getAllOrdersUser, getAllUserReviews } from "../../redux/actions"
 
 
 const HomeUser = () => {
   const dispatch = useDispatch();
-  const OrdersUser = useSelector((state)=> state.OrdersUser)
   useEffect(() => {
-    dispatch(getAllOrdersUser(1));
+    // dispatch(getAllOrdersUser(1));
+    // dispatch(getAllUserReviews(1));
   }, [dispatch]);
  
   return (

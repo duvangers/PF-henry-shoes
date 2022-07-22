@@ -2,7 +2,8 @@ import Axios from "axios";
 import * as actionTypes from "../action-types";
 import Sweal from "sweetalert2";
 
-Axios.defaults.baseURL = "https://app-henry-shoes.herokuapp.com/api";
+Axios.defaults.baseURL = 'https://app-henry-shoes.herokuapp.com/api'
+// Axios.defaults.baseURL = 'http://localhost:3001/api'
 
 export const getUsers = () => {
   return async function (dispatch) {
@@ -335,8 +336,14 @@ export function userLogout() {
 export function createOrden(payload, userId) {
   return async function (dispatch) {
     try {
-      const response = await Axios.post(`/ordens/${userId}`, payload);
-      Sweal.fire("Orden creada con éxito!", `${response.data.msg}`, "success");
+
+      const response = await Axios.post(`/ordens/${userId}`, payload)
+      Sweal.fire('Orden creada con éxito!', `${response.data.msg}`, 'success')
+      return dispatch({
+        type: actionTypes.DELETE_CARRITO,
+        payload: [],
+      });
+      
     } catch (error) {
       Sweal.fire("Ups hubo un error", `${error.response.data.msg}`, "error");
       console.log(error.response);
@@ -373,6 +380,7 @@ export function updateUserDetails(payload, userId) {
     }
   };
 }
+
 export function createReview(payload, userId) {
   return async function (dispatch) {
     try {
@@ -389,3 +397,21 @@ export function createReview(payload, userId) {
     }
   };
 }
+
+
+
+
+export function createOrderMP(body) {
+  return function (dispatch) {
+    if(body.price_total > 1){
+      return Axios.post('/payment', body).then(response => {
+        dispatch({
+          type: actionTypes.CREATE_ORDERMP,
+          payload: response.data.init_point,
+        })
+      })
+
+    }
+  }
+}
+

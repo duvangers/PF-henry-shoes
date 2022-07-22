@@ -22,6 +22,7 @@ const initialState = {
   ShoesDetails: {},
   Carrito: [],
   UserLog: [],
+  OrderMP: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -39,8 +40,7 @@ const rootReducer = (state = initialState, action) => {
     case actionTypes.GET_ALL_ORDERS_USER:
       return {
         ...state,
-        Orders: action.payload,
-
+        OrdersUser: action.payload,
       }
 
     case actionTypes.GET_ALL_USER_REVIEWS:
@@ -238,6 +238,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       };
 
+
+    case actionTypes.CREATE_ORDERMP:
+      return {
+        ...state,
+        OrderMP: action.payload,
+      }
 
     default:
       return state
