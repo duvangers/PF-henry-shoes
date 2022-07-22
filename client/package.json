@@ -30,7 +30,9 @@
     "sass": "^1.49.9",
     "sweetalert2": "^11.4.23",
     "web-vitals": "^2.1.4",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4"
   },
   "scripts": {
     "start": "react-scripts start",

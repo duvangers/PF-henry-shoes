@@ -1,20 +1,30 @@
-import "./navbar.scss";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-
+import './navbar.scss'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 
 import { getAllCategories, getAllBrands, getFilterCategories, getFilterBrands, userLogin, userLogout } from '../../redux/actions'
-
-
-import GeneralFilter from "./GeneralFilter";
-import SearchBar from "./SearchBar";
-
+/* */
+import GeneralFilter from './GeneralFilter'
+import SearchBar from './SearchBar'
 
 import logotoro from '../../logotoro.png'
 import Avatar from '@mui/material/Avatar'
 import SettingsIcon from '@mui/icons-material/Settings'
+import Badge from '@mui/material/Badge'
+import { styled } from '@mui/material/styles'
+import IconButton from '@mui/material/IconButton'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}))
 
 export default function Navbar() {
   const dispatch = useDispatch()
@@ -36,17 +46,15 @@ export default function Navbar() {
   const carrito = useSelector(state => state.Carrito)
   const userDetails = useSelector(state => state.UserLog)
 
+  const filterCategory = e => {
+    navigate('/filters')
+    dispatch(getFilterCategories(e))
+  }
 
-  const filterCategory = (e) => {
-    navigate("/filters");
-    dispatch(getFilterCategories(e));
-  };
-
-  const filterBrand = (e) => {
-    navigate("/filters");
-    dispatch(getFilterBrands(e));
-  };
-
+  const filterBrand = e => {
+    navigate('/filters')
+    dispatch(getFilterBrands(e))
+  }
 
   const navigateRoute = (event, route) => {
     event.preventDefault()
@@ -60,7 +68,6 @@ export default function Navbar() {
 
   return (
     <div style={{ height: '80px' }}>
-
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <button
@@ -76,88 +83,44 @@ export default function Navbar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <img
-                src={logotoro}
-                className="d-inline-block align-top"
-                width="30"
-                height="30"
-                alt="logo"
-              />
+              <img src={logotoro} className="d-inline-block align-top" width="30" height="30" alt="logo" />
               <Link className="nav-link active" aria-current="page" to="/">
                 <li className="nav-item">Inicio</li>
               </Link>
 
               {!isAuthenticated ? (
                 ''
-
               ) : userLog.roleId === 1 ? (
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/admin"
-                >
+                <Link className="nav-link active" aria-current="page" to="/admin">
                   <li className="nav-item">Panel Admin</li>
                 </Link>
               ) : (
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/user"
-                >
+                <Link className="nav-link active" aria-current="page" to="/user">
                   <li className="nav-item">Panel Usuario</li>
                 </Link>
               )}
 
               <li className="nav-item dropdown">
-                <div
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  aria-controls="multiCollapseExample1 multiCollapseExample2"
-                >
+                <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">
                   Categories
                 </div>
-                <GeneralFilter
-                  categories={categories}
-                  funtionFilter={filterCategory}
-                />
+                <GeneralFilter categories={categories} funtionFilter={filterCategory} />
               </li>
               <li className="nav-item dropdown">
-                <div
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  aria-controls="multiCollapseExample1 multiCollapseExample2"
-                >
+                <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">
                   Brands
                 </div>
-                <GeneralFilter
-                  categories={brands}
-                  funtionFilter={filterBrand}
-                />
+                <GeneralFilter categories={brands} funtionFilter={filterBrand} />
               </li>
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/carshop">
-                  {carrito.length === 0 ? (
-                    <i
-                      className="fa fa-shopping-cart fa-lg "
-                      aria-hidden="true"
-                    ></i>
-                  ) : (
-                    <i
-                      className="fa fa-shopping-cart fa-lg text-danger"
-                      aria-hidden="true"
-                    >
-                      {carrito.length}
-                    </i>
-                  )}
+                <Link aria-current="page" to="/carshop">
+                  <IconButton aria-label="cart">
+                    <StyledBadge badgeContent={carrito.length} color="secondary">
+                      <ShoppingCartIcon />
+                    </StyledBadge>
+                  </IconButton>
                 </Link>
               </li>
-
             </ul>
 
             <SearchBar dispatch={dispatch} name={nameSearch} setName={setNameSearch} navigate={navigate} />
@@ -208,10 +171,9 @@ export default function Navbar() {
                 </button>
               </div>
             )}
-
           </div>
         </div>
       </nav>
     </div>
-  );
+  )
 }

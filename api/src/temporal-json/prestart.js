@@ -18,35 +18,6 @@ const preBrands = () => {
   })
 }
 
-const preUsers = () => {
-  const json = require('../temporal-json/users.json')
-
-  json.forEach(async value => {
-    const { dni, username, name, lastname, genre, email, email_verify, phone, adress, country, avatar_url, rol } = value
-
-    try {
-      const user = await modelUsers.create({
-        dni,
-        username,
-        name,
-        lastname,
-        genre,
-        email,
-        email_verify,
-        phone,
-        adress,
-        country,
-        status: 'Active',
-        avatar_url,
-      })
-
-      user.setRole(rol)
-    } catch (error) {
-      console.log(error)
-    }
-  })
-}
-
 const preCategories = async () => {
   const json = require('../temporal-json/categories.json')
 
@@ -128,21 +99,26 @@ const preProducts = async () => {
     })
 
     try {
-      const product = await modelProducts.create({
-        name,
-        nickname: nickname,
-        description: description.replace(/<\/?[^>]+(>|$)/g, ''),
-        price,
-        img,
-        stock_total: arraySizes.reduce((a, value) => (a += value.stock), 0),
-        size_range: arraySizes,
-        material,
-        released,
-        designer,
-        details,
-        shoe_condition,
-        rating: 5,
+      const [product, created] = await modelProducts.findOrCreate({
+        where: { name },
+        defaults: {
+          name,
+          nickname: nickname,
+          description: description.replace(/<\/?[^>]+(>|$)/g, ''),
+          price,
+          img,
+          stock_total: arraySizes.reduce((a, value) => (a += value.stock), 0),
+          size_range: arraySizes,
+          material,
+          released,
+          designer,
+          details,
+          shoe_condition,
+          rating: 5,
+        },
       })
+
+      if (!created) return
 
       const mapCategories = category.map(async value => {
         const responseCategory = await modelCategories.findOne(
@@ -219,36 +195,6 @@ const preQuestions = async () => {
   })
 }
 
-const preReviews = () => {
-  const json = require('../temporal-json/reviews.json')
-
-  json.forEach(async obj => {
-    try {
-      const review = await modelReviews.create({
-        comment: obj.comment,
-        rating: obj.rating,
-      })
-
-      await review.setUser(obj.userId)
-      await review.setProduct(obj.productId)
-
-      const product = await modelProducts.findByPk(obj.productId)
-
-      let reviews = await product.getReviews()
-      await modelProducts.update(
-        {
-          rating: (reviews.length * obj.rating * 5) / 100,
-        },
-        {
-          where: { id: obj.productId },
-        }
-      )
-    } catch (error) {
-      console.log(error)
-    }
-  })
-}
-
 const preRoles = () => {
   const json = require('../temporal-json/roles.json')
 
@@ -263,34 +209,10 @@ const preRoles = () => {
   })
 }
 
-const preOrdens = () => {
-  const json = require('../temporal-json/ordens.json')
-
-  json.forEach(async value => {
-    const { products, details, amount_total, price_total } = value
-
-    try {
-      const order = await modelOrdens.create({
-        amount_total,
-        price_total,
-        details,
-      })
-
-      order.setUser(1)
-      order.setProducts(products)
-    } catch (error) {
-      console.log(error)
-    }
-  })
-}
-
 setTimeout(preQuestions, 3000)
 setTimeout(preBrands, 3000)
 setTimeout(preCategories, 3000)
 setTimeout(preColors, 3000)
 setTimeout(preGenders, 3000)
 setTimeout(preRoles, 3000)
-setTimeout(preProducts, 6000)
-setTimeout(preUsers, 6000)
-setTimeout(preOrdens, 15000)
-setTimeout(preReviews, 15000)
+setTimeout(preProducts, 6500)
