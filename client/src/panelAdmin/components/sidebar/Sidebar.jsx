@@ -21,7 +21,8 @@ import { userLogout } from "../../../redux/actions";
 const Sidebar = () => {
   const { user, isAuthenticated, isLoading, logout } = useAuth0();
   const dispatch = useDispatch();
-  const handleClickLogout = () => {
+  const handleClickLogout = (e) => {
+    e.preventDefault();
     logout();
     dispatch(userLogout());
   };
@@ -109,12 +110,12 @@ const Sidebar = () => {
               <span>Perfil</span>
             </li>
           </Link>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <li onClick={(event) => handleClickLogout()}>
+          {/* <Link to="/" style={{ textDecoration: "none" }}>
+            <li onClick={(e) => handleClickLogout(e)}>
               <ExitToAppIcon className="icon" />
               <span>Salir</span>
             </li>
-          </Link>
+          </Link> */}
         </ul>
       </div>
       {/* <div className="bottom">
