@@ -1,0 +1,19 @@
+.title-reviews {
+  font-family: Roboto, sans-serif;
+  //   border: 1px solid blue;
+  background-color: white;
+
+  padding: 0.5rem 5rem 0 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  .button {
+    border-color: #1d3557;
+    color: #293241;
+
+    &:hover {
+      color: #1976d2;
+      text-decoration: underline;
+    }
+  }
+}
