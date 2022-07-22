@@ -69,6 +69,7 @@ const createOrden = async (req, res) => {
       details,
       metodopago,
     })
+
     let relProduct = details.map(obj => obj.productID)
     relProduct = [...new Set(relProduct)]
 
