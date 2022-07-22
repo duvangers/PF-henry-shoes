@@ -22,6 +22,7 @@ const initialState = {
   ShoesDetails: {},
   Carrito: [],
   UserLog: [],
+  OrderMP: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -237,6 +238,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       };
 
+
+    case actionTypes.CREATE_ORDERMP:
+      return {
+        ...state,
+        OrderMP: action.payload,
+      }
 
     default:
       return state
