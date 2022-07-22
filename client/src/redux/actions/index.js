@@ -311,35 +311,32 @@ export const createGenders = (gender) => {
   };
 };
 
-
 export function userLogin(data) {
   return async function (dispatch) {
     try {
-      const response = await Axios.post('/login', data)
+      const response = await Axios.post("/login", data);
       return dispatch({
         type: actionTypes.USER_LOGIN,
         payload: response.data,
-      })
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-
+  };
 }
 
 export function userLogout() {
   return function (dispatch) {
     return {
-
       type: actionTypes.USER_LOGOUT,
-    }
-  }
-
+    };
+  };
 }
 
 export function createOrden(payload, userId) {
   return async function (dispatch) {
     try {
+
       const response = await Axios.post(`/ordens/${userId}`, payload)
       Sweal.fire('Orden creada con éxito!', `${response.data.msg}`, 'success')
       return dispatch({
@@ -348,8 +345,8 @@ export function createOrden(payload, userId) {
       });
       
     } catch (error) {
-      Sweal.fire('Ups hubo un error', `${error.response.data.msg}`, 'error')
-      console.log(error.response)
+      Sweal.fire("Ups hubo un error", `${error.response.data.msg}`, "error");
+      console.log(error.response);
     }
   };
 }
@@ -384,6 +381,24 @@ export function updateUserDetails(payload, userId) {
   };
 }
 
+export function createReview(payload, userId) {
+  return async function (dispatch) {
+    try {
+      const response = await Axios.post(`/reviews/${userId}`, payload);
+      // payload = { productId, comment, rating };
+      Sweal.fire("Review", `${response.data.msg}`, "success");
+      return dispatch({
+        type: actionTypes.CREATE_REVIEW,
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error);
+      Sweal.fire("Ups hubo un error", `${error.response.data.msg}`, "error");
+    }
+  };
+}
+
+
 
 
 export function createOrderMP(body) {
@@ -399,3 +414,4 @@ export function createOrderMP(body) {
     }
   }
 }
+

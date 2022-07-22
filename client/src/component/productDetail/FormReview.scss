@@ -1,0 +1,157 @@
+$primary-color: #1d3557;
+$error-color: #e63946;
+$bg-color: #f1faee;
+$text-color: #293241;
+$color-white: #fff;
+$color-green: #8fffab;
+
+$border-radius: 4px;
+
+.container {
+  margin-top: 0.5rem;
+  padding: 3rem;
+  padding-top: 0;
+  border-radius: $border-radius;
+
+  .success-msg {
+    color: $primary-color;
+    background: $color-green;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: $border-radius;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: $text-color;
+    margin-bottom: 2rem;
+  }
+
+  label,
+  input {
+    color: $text-color;
+  }
+
+  label {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    align-self: flex-start;
+  }
+
+  input {
+    border: 2px solid rgba($primary-color, 0.8);
+    border-radius: $border-radius;
+    padding: 0.5rem 1rem;
+    padding-left: 1rem;
+    font-size: 16px;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+  .form-rating {
+    display: flex;
+    // flex-direction: row;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    .ratings {
+      // margin-left: 30px;
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-self: center;
+      align-items: center;
+    }
+  }
+  button {
+    color: $color-white;
+    width: 100%;
+    font-size: 1.4rem;
+    background: $primary-color;
+    border-radius: $border-radius;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem 1.2rem;
+    margin-top: 0.5rem;
+
+    &:hover {
+      background: rgba($primary-color, 0.8);
+    }
+  }
+
+  .input-error {
+    border-color: $error-color;
+  }
+
+  .error {
+    color: $error-color;
+    font-size: 1rem;
+    margin-top: 0.3rem;
+  }
+
+  .disabled-btn {
+    cursor: not-allowed;
+    background: rgba($primary-color, 0.8);
+  }
+}
+// ssssssss
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+.star-form {
+  cursor: pointer;
+  font-size: x-large;
+  margin-right: 5px;
+}
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  float: left;
+}
+.rating > input {
+  display: none;
+}
+.rating > i {
+  position: relative;
+  width: 20px;
+  margin-right: 2px;
+  font-weight: bold;
+  font-size: 25px;
+  color: orange;
+  cursor: pointer;
+}
+.rating > i::before {
+  content: "\2605";
+  position: absolute;
+  opacity: 0;
+}
+.rating > i:hover:before,
+.rating > i:hover ~ i:before {
+  opacity: 1 !important;
+}
+.rating > input:checked ~ i:before {
+  opacity: 1;
+}
+.rating:hover > input:checked ~ i:before {
+  opacity: 0.4;
+}
+// .reviews {
+//   display: flex;
+//   margin-top: 5px;
+//   justify-content: space-between;
+// }
+// .reviews p {
+//   font-size: 12px;
+//   font-weight: 700;
+//   color: #9f9f9f;
+// }
+// .reviews u {
+//   font-size: 11px;
+//   color: red;
+//   cursor: pointer;
+//   transition: all 0.5s;
+// }
