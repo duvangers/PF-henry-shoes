@@ -9,7 +9,11 @@ import {
 import Loading from "../loading/loading.jsx";
 import Footer from "../footer/footer";
 import FormReview from "./FormReview";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import { Button, Collapse, List } from "@mui/material";
 
+import "./Reviews.scss";
 export default function ProductDetail() {
   const dispatch = useDispatch(),
     { id } = useParams();
@@ -26,7 +30,12 @@ export default function ProductDetail() {
     [heart, setheart] = useState(1),
     [talle, setTalle] = useState(""),
     [añadido, setAñadido] = useState(false),
-    [userRating, setUserRating] = useState(5);
+    [userRating, setUserRating] = useState(5),
+    [display, setDisplay] = useState(false);
+  const handleDisplay = (e) => {
+    e.preventDefault();
+    setDisplay(!display);
+  };
   const AddCar = () => {
     if (addbag < 10) {
       setaddbag(addbag + 1);
@@ -248,14 +257,55 @@ export default function ProductDetail() {
       ) : (
         <Loading />
       )}
-      {/* <Footer/> */}
-      <FormReview
-        userRating={userRating}
-        setUserRating={setUserRating}
-        userId={userId}
-        productId={Number(id)}
-        dispatch={dispatch}
-      />
+      <div className="container-fluid title-reviews">
+        <h1>Reseñas</h1>
+        {/* <Button variant="outlined" startIcon={<ExpandLess />}>
+          <p> Cancelar Reseña</p>
+        </Button> */}
+        {display ? (
+          // <div className="option" onClick={(e) => handleDisplay(e)}>
+          //   <p>Cancelar Reseña</p>
+          //   <ExpandLess className="display" />
+          // </div>
+          <Button
+            className="button"
+            variant="outlined"
+            onClick={(e) => handleDisplay(e)}
+            startIcon={<ExpandLess className="display" />}
+          >
+            Cancelar Reseña
+          </Button>
+        ) : (
+          // <div className="option" onClick={(e) => handleDisplay(e)}>
+          //   <p>Añadir Reseña</p>
+          //   <ExpandMore className="display" />
+          // </div>
+          <Button
+            className="button"
+            variant="outlined"
+            onClick={(e) => handleDisplay(e)}
+            startIcon={<ExpandMore className="display" />}
+          >
+            Añadir Reseña
+          </Button>
+        )}
+      </div>
+      <Collapse
+        in={display}
+        timeout="auto"
+        sx={{ backgroundColor: "white" }}
+        unmountOnExit
+      >
+        <List component="div" disablePadding>
+          <FormReview
+            userRating={userRating}
+            setUserRating={setUserRating}
+            userId={userId}
+            productId={Number(id)}
+            dispatch={dispatch}
+          />
+        </List>
+      </Collapse>
     </div>
   );
 }

@@ -40,7 +40,6 @@ function FormReview({
         const { errors, touched, isValid, dirty } = formik;
         return (
           <div className="container">
-            <h1>Añadir una Review</h1>
             <Form>
               <div className="form-row">
                 <label className="name">Nombre</label>
@@ -77,8 +76,8 @@ function FormReview({
 
                 <ErrorMessage name="title" component="span" className="error" />
               </div>
-              <div className="form-row">
-                <label className="titles">Rating</label>
+              <div className="form-rating">
+                <label className="titles">Rating:</label>
                 <div className="ratings">
                   {/* <input type="radio" name="rating" value="5" id="5" />
                   <label htmlFor="5">☆</label>
@@ -95,7 +94,7 @@ function FormReview({
                       <i
                         key={i}
                         id={i + 1}
-                        className={`fa ${
+                        className={`fa star-form ${
                           s === 1 ? "fa-star" : "fa-star grey"
                         } `}
                         onClick={(e) => handleClick(e)}
