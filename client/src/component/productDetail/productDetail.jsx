@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router'
-import { getAllDetails, CleanStateDetail, addCarrito } from '../../redux/actions'
-import Loading from '../loading/loading.jsx'
-import  AlignItemsList  from "./Comentarios/comentarios"
-import Footer from '../footer/footer'
-=======
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -21,23 +12,11 @@ import FormReview from "./FormReview";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Button, Collapse, List } from "@mui/material";
->>>>>>> main
 
 import "./Reviews.scss";
 export default function ProductDetail() {
-<<<<<<< HEAD
-  const dispatch = useDispatch()
-
-  const { id } = useParams()
-
-  const details = useSelector(state => state.ShoesDetails)
-
-  // console.log(details)
-
-=======
   const dispatch = useDispatch(),
     { id } = useParams();
->>>>>>> main
   useEffect(() => {
     dispatch(getAllDetails(id));
     dispatch(CleanStateDetail());
@@ -278,12 +257,6 @@ export default function ProductDetail() {
       ) : (
         <Loading />
       )}
-<<<<<<< HEAD
-      {/* <Footer/> */}
-      <div>
-        <AlignItemsList />
-      </div>
-=======
       <div className="container-fluid title-reviews">
         <h1>Reseñas</h1>
         {/* <Button variant="outlined" startIcon={<ExpandLess />}>
@@ -333,7 +306,6 @@ export default function ProductDetail() {
           />
         </List>
       </Collapse>
->>>>>>> main
     </div>
   );
 }
