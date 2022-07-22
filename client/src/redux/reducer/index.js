@@ -40,8 +40,9 @@ const rootReducer = (state = initialState, action) => {
     case actionTypes.GET_ALL_ORDERS_USER:
       return {
         ...state,
-        Orders: action.payload,
+        OrdersUser: action.payload,
       }
+
     case actionTypes.GET_ALL_USER_REVIEWS:
       return {
         ...state,
@@ -230,7 +231,13 @@ const rootReducer = (state = initialState, action) => {
 
       return {
         ...state,
-      }
+
+      };
+    case actionTypes.UPDATE_ORDEN:
+      return {
+        ...state,
+      };
+
 
     case actionTypes.CREATE_ORDERMP:
       return {

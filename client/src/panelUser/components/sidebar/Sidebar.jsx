@@ -15,7 +15,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllOrdersUser, userLogout } from '../../../redux/actions'
+import { getAllOrdersUser, userLogout, getAllUserReviews } from '../../../redux/actions'
 import { useAuth0 } from '@auth0/auth0-react'
 
 // import { DarkModeContext } from "../../context/darkModeContext";
@@ -33,7 +33,8 @@ const Sidebar = () => {
   const userDetails = useSelector(state => state.UserLog)
 
   useEffect(() => {
-    dispatch(getAllOrdersUser(userDetails.id))
+    // dispatch(getAllOrdersUser(userDetails.id))
+    // dispatch(getAllUserReviews(1))
     //dispatch(userLogin(user))
   }, [dispatch, userDetails])
 
