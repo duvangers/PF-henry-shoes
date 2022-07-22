@@ -3,9 +3,41 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllColors, getAllGenders, getAllBrands, updateFilters } from '../../redux/actions'
 
 import './FiltersContainer.css'
+import Slider from '@mui/material/Slider'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Divider from '@mui/material/Divider'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
 
 export default function FiltersContainer() {
   const dispatch = useDispatch()
+
+  const colors = useSelector(store => store.Colors)
+  const genders = useSelector(store => store.Genders)
+  const products = useSelector(store => store.backupFilters)
+
+  const mathMin = () => {
+    let arrayPrices = products.map(value => value.price)
+    if (!arrayPrices.length) arrayPrices = [0]
+    return Math.min(...arrayPrices)
+  }
+
+  const mathMax = () => {
+    let arrayPrices = products.map(value => value.price)
+    if (!arrayPrices.length) arrayPrices = [10]
+    return Math.max(...arrayPrices)
+  }
+
+  const [gender, setGender] = useState([])
+  const [color, setColor] = useState([])
+  const [price, setPrice] = useState([mathMin(), mathMax()])
+  const [priceInput, setPriceInput] = useState([mathMin(), mathMax()])
 
   useEffect(() => {
     dispatch(getAllColors())
@@ -13,122 +45,112 @@ export default function FiltersContainer() {
     dispatch(getAllBrands())
   }, [dispatch])
 
-  const colors = useSelector(state => state.Colors)
-  const genders = useSelector(state => state.Genders)
-
-  const [filters, setFilters] = useState({
-    genders: [],
-    prices: { min: 0, max: 100000 },
-    colors: [],
-  })
-
-  function handleInputGendersClick(event) {
-    let array
-
-    if (filters.genders.includes(event.target.value)) {
-      array = filters.genders.filter(value => value !== event.target.value)
-    } else {
-      array = filters.genders
-      array.push(event.target.value)
-    }
-    setFilters({
-      ...filters,
-      genders: array,
-    })
+  const handleChangeGender = event => {
+    const array = gender.includes(event.target.name) ? gender.filter(value => value !== event.target.name) : gender.push(event.target.name) && gender
+    setGender([...array])
   }
 
-  function handleInputGendersPrices(event) {
-    let confi
-    if (event.target.id === 'filterPrice_min') {
-      confi = {
-        ...filters.prices,
-        min: event.target.value,
+  const handleChangeColor = event => {
+    const array = color.includes(event.target.name) ? color.filter(value => value !== event.target.name) : color.push(event.target.name) && color
+    setColor([...array])
+  }
+
+  const handleChangePrice = (event, newValue, activeThumb) => {
+    if (!Array.isArray(newValue)) {
+      return
+    }
+
+    if (newValue[1] - newValue[0] < 10) {
+      if (activeThumb === 0) {
+        const clamped = Math.min(newValue[0], mathMax() - 10)
+        setPrice([clamped, clamped + 10])
+        setPriceInput([clamped, clamped + 10])
+      } else {
+        const clamped = Math.max(newValue[1], 10)
+        setPrice([clamped - 10, clamped])
+        setPriceInput([clamped - 10, clamped])
       }
-    }
-    if (event.target.id === 'filterPrice_max') {
-      confi = {
-        ...filters.prices,
-        max: event.target.value,
-      }
-    }
-
-    setFilters({
-      ...filters,
-      prices: confi,
-    })
-  }
-
-  function handleInputColorsClick(event) {
-    let array
-
-    if (filters.colors.includes(event.target.value)) {
-      array = filters.colors.filter(value => value !== event.target.value)
     } else {
-      array = filters.colors
-      array.push(event.target.value)
+      setPrice(newValue)
+      setPriceInput(newValue)
     }
-    setFilters({
-      ...filters,
-      colors: array,
-    })
-  }
-  //  Submit
-  function handleSubmitGenders() {
-    dispatch(updateFilters(filters))
   }
 
-  function handleSubmitColors() {
-    dispatch(updateFilters(filters))
+  const handleChangePriceInput = event => {
+    if (event.target.name === 'min') setPriceInput([parseInt(event.target.value), priceInput[1]])
+    else if (event.target.name === 'max') setPriceInput([priceInput[0], parseInt(event.target.value)])
   }
 
-  function handleSubmitPrices() {
-    dispatch(updateFilters(filters))
+  const handleButtonClick = () => {
+    dispatch(
+      updateFilters({
+        genders: gender,
+        colors: color,
+        prices: { min: price[0], max: price[1] },
+      })
+    )
   }
 
   return (
     <div className="d-flex align-items-start flex-column" style={{ height: '200px' }}>
-      <div className="modal-content p-2 my-1">
-        <div className="col w-90 p-2 fw-bold" style={{ width: '200px' }}>
+      <Box className="modal-content p-2 my-1">
+        <Typography align="left" variant="button" display="block">
           GÉNERO
-        </div>
-        <ul className='list-group text-start mb-1'>
+        </Typography>
+        <Divider />
+        <FormGroup onChange={handleChangeGender}>
           {genders.map(e => (
-            <li className="list-group-item">
-              <input key={e.name} className='form-check-input me-1' type="checkbox" name={e.name} value={e.name} onClick={handleInputGendersClick} />
-              <label>{e.name}</label>
-            </li>
+            <FormControlLabel control={<Checkbox color="default" name={e.name} />} label={e.name} />
           ))}
-        </ul>
-        <button className='btn btn-primary' onClick={handleSubmitGenders}>Aplicar </button>
-      </div>
-      <div className='modal-content p-2 my-1'>
-        <div className="col w-90 p-2 fw-bold" style={{ width: '200px' }}>
+        </FormGroup>
+        <Button variant="contained" onClick={handleButtonClick}>
+          Aplicar
+        </Button>
+      </Box>
+      <Box className="modal-content p-2 my-1">
+        <Typography align="left" variant="button" display="block">
           PRECIO
-        </div>
-        <div className='form-floating mb-1'>
-          <input id="filterPrice_min" className='form-control' type="numbers" min="0" max="100000" value={filters.prices.min} onChange={handleInputGendersPrices} placeholder='a' />
-          <label for='filterPrice_min'>Mín.</label>
-        </div>  
-        <div className='form-floating mb-1'>
-          <input id="filterPrice_max" className='form-control' type="numbers" min="0" max="100000" value={filters.prices.max} onChange={handleInputGendersPrices} placeholder='a' />
-          <label for='filterPrice_max'>Max.</label>
-        </div>
-        <button className='btn btn-primary' onClick={handleSubmitPrices}>Aplicar</button>
-      </div>
-      <div className='modal-content h-auto p-2 my-1'>
-        <div className="p-2 fw-bold" style={{ width: '200px' }}>
+        </Typography>
+        <Divider />
+        <Slider
+          getAriaLabel={() => 'Minimum distance shift'}
+          size="small"
+          min={mathMin()}
+          max={mathMax()}
+          value={price}
+          onChange={handleChangePrice}
+          valueLabelFormat={`$${price[0]} - $${price[1]}`}
+          valueLabelDisplay="auto"
+          disableSwap
+        />
+        <Box sx={{ width: 200, display: 'flex' }}>
+          <div className="form-floating mb-1 p-1">
+            <TextField label="Mín" id="outlined-size-small" defaultValue={priceInput[0]} type="number" value={priceInput[0]} onChange={handleChangePriceInput} size="small" name="min" />
+          </div>
+          <div className="form-floating mb-1 p-1">
+            <TextField label="Máx" id="outlined-size-small" defaultValue={priceInput[1]} type="number" value={priceInput[1]} size="small" onChange={handleChangePriceInput} name="max" />
+          </div>
+        </Box>
+        <Button variant="contained" onClick={handleButtonClick}>
+          Aplicar
+        </Button>
+      </Box>
+      <Box className="modal-content h-auto p-2 my-1">
+        <Typography align="left" variant="button" display="block">
           COLOR
-        </div>
-        <ul className='list-group text-start overflow-auto mb-1 colorFilters_box'>
-          {colors.map(e => (
-            <li className='list-group-item'>
-              <input key={e.name} className='form-check-input me-1' type="checkbox" name={e.name} value={e.name} onClick={handleInputColorsClick} />
-              <label>{e.name}</label>
-            </li>
-          ))}
-        </ul>
-        <button className='btn btn-primary' onClick={handleSubmitColors}>Aplicar </button>
-      </div>
+        </Typography>
+        <Divider />
+        <Paper sx={{ width: 200, height: 230, marginTop: 1, marginBottom: 1, padding: 1, overflow: 'auto' }}>
+          <FormGroup onChange={handleChangeColor}>
+            {colors.map(e => (
+              <FormControlLabel control={<Checkbox color="default" name={e.name} />} label={e.name} />
+            ))}
+          </FormGroup>
+        </Paper>
+        <Button variant="contained" onClick={handleButtonClick}>
+          Aplicar
+        </Button>
+      </Box>
     </div>
   )
 }
