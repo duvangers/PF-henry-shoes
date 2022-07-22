@@ -15,10 +15,10 @@
       margin: 20px;
       display: flex;
 
-      // h1 {
-      //   color: lightgray;
-      //   font-size: 20px;
-      // }
+      h1 {
+        color: lightgray;
+        font-size: 20px;
+      }
 
       .left {
         flex: 1;
@@ -27,79 +27,115 @@
         justify-content: center;
         align-items: center;
 
-      //   img {
-      //     width: 70%;
-      //     height: 70%;
-      //     border-radius: 50%;
-      //     object-fit: cover;
-      //   }
-      // }
+        img {
+          width: 300px;
+          height: 200px;
+          // border-radius: 50%;
+          object-fit: cover;
+        }
+      }
 
       .right {
         flex: 2;
 
-      //   .form {
-      //     display: flex;
-      //     flex-wrap: wrap;
-      //     gap: 30px;
-      //     justify-content: space-around;
+        .Form {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 30px;
+          justify-content: space-around;
 
-      //     .formInput {
-      //       width: 40%;
+          .formInput {
+            width: 40%;
 
-      //       label {
-      //         display: flex;
-      //         align-items: center;
-      //         gap: 10px;
+            label {
+              display: flex;
+              align-items: center;
+              gap: 10px;
 
-      //         .icon {
-      //           cursor: pointer;
-      //         }
-      //       }
+              .icon {
+                cursor: pointer;
+              }
+            }
 
-      //       .input {
-      //         width: 100%;
-      //         padding: 5px;
-      //         border: none;
-      //         border-bottom: 1px solid gray;
-      //       }
-      //     }
-
-      //     button {
-      //       width: 150px;
-      //       padding: 10px;
-      //       border: none;
-      //       border-radius: 5px;
-      //       background-color: teal;
-      //       color: white;
-      //       font-weight: bold;
-      //       cursor: pointer;
-      //       margin-top: 10px;
-      //     }
+            .input {
+              width: 100%;
+              padding: 5px;
+              border: none;
+              border-bottom: 1px solid gray;
+            }
+          }
         }
       }
     }
   }
 }
-
-
-* {
-	padding: 0px;
-	margin: 0;
-	box-sizing: border-box;
+.buttonSend {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(255, 238, 7);
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.deleteButton{
+  width: 70px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(141, 0, 0);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.buttonX{
+  width: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(141, 0, 0);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 5px;
+}
+.buttonAdd{
+  width: auto;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(14, 110, 43);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 5px;
 }
 
-body {
-	background: #E8E8E8;
-	font-family: 'Open Sans', sans-serif;
-}
+// .nobottom{
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-evenly;
+//   align-items: center;
+//   margin-left:40px;
+// }
 
-.contenedor {
-	min-height: 100vh;
-	display: flex;
-	align-items: flex-start;
-	justify-content: center;
-}
+// * {
+// 	padding: 0px;
+// 	margin: 0;
+// 	box-sizing: border-box;
+// }
+
+// body {
+// 	background: #E8E8E8;
+// 	font-family: 'Open Sans', sans-serif;
+// }
+
+// .contenedor {
+// 	min-height: 100vh;
+// 	display: flex;
+// 	align-items: flex-start;
+// 	justify-content: center;
+// }
 
 .formulario {
 	min-width: 600px;
@@ -139,12 +175,6 @@ body {
 	border: 2px solid #0085FF;
 }
 
-.formulario .error {
-	color: #e92b2d;
-	font-weight: 600;
-	font-size: 12px;
-}
-
 .formulario button[type="submit"] {
 	display: block;
 	background: yellow;
@@ -164,12 +194,12 @@ body {
 	background: #fffc3e;
 }
 
-.formulario .exito {
-	text-align: center;
-	font-size: 14px;
-	padding-top: 20px;
-	color: #02a802;
-}
+// .formulario .exito {
+// 	text-align: center;
+// 	font-size: 14px;
+// 	padding-top: 20px;
+// 	color: #02a802;
+// }
 
 .formulario input[type="radio"] {
 	width: auto;
