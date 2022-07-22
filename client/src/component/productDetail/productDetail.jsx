@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { getAllDetails, CleanStateDetail, addCarrito } from '../../redux/actions'
 import Loading from '../loading/loading.jsx'
+import  AlignItemsList  from "./Comentarios/comentarios"
 import Footer from '../footer/footer'
 
 export default function ProductDetail() {
@@ -12,7 +13,7 @@ export default function ProductDetail() {
 
   const details = useSelector(state => state.ShoesDetails)
 
-  console.log(details)
+  // console.log(details)
 
   useEffect(() => {
     dispatch(getAllDetails(id))
@@ -192,6 +193,9 @@ export default function ProductDetail() {
         <Loading />
       )}
       {/* <Footer/> */}
+      <div>
+        <AlignItemsList />
+      </div>
     </div>
   )
 }

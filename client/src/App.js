@@ -45,7 +45,7 @@ function App() {
         <Route exact path="/paneladmin" element={<HomeAdmin />} />
         {!userLog.name ? (
           ""
-        ) : userLog.roleId === 1 ? (
+        ) : userLog.roleId === 1 || userLog.roleId === null ? (
           <Route path="admin">
             {/* <Route index element={<DashBoard />} /> */}
             <Route index element={<HomeAdmin />} />
