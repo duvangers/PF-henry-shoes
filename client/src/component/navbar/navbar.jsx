@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 
 import { getAllCategories, getAllBrands, getFilterCategories, getFilterBrands, userLogin, userLogout } from '../../redux/actions'
-
+/* */
 import GeneralFilter from './GeneralFilter'
 import SearchBar from './SearchBar'
 
