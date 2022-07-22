@@ -114,7 +114,7 @@ const preProducts = async () => {
           designer,
           details,
           shoe_condition,
-          rating: 5,
+          rating: 0,
         },
       })
 
