@@ -1,4 +1,3 @@
-
 import './navbar.scss'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 
 import { getAllCategories, getAllBrands, getFilterCategories, getFilterBrands, userLogin, userLogout } from '../../redux/actions'
-
+/* */
 import GeneralFilter from './GeneralFilter'
 import SearchBar from './SearchBar'
 
@@ -27,20 +26,25 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }))
 
-
 export default function Navbar() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0()
 
   useEffect(() => {
-    if (user) dispatch(userLogin(user));
+    if (user) dispatch(userLogin(user))
 
-    dispatch(getAllBrands());
-    dispatch(getAllCategories());
-  }, [dispatch, user]);
+    dispatch(getAllBrands())
+    dispatch(getAllCategories())
+  }, [dispatch, user])
 
+  const categories = useSelector(state => state.Categories)
+  const brands = useSelector(state => state.Brands)
+  const userLog = useSelector(state => state.UserLog)
+  const [nameSearch, setNameSearch] = useState('')
+  const carrito = useSelector(state => state.Carrito)
+  const userDetails = useSelector(state => state.UserLog)
 
   const filterCategory = e => {
     navigate('/filters')
@@ -52,21 +56,18 @@ export default function Navbar() {
     dispatch(getFilterBrands(e))
   }
 
-
   const navigateRoute = (event, route) => {
-    event.preventDefault();
-    navigate(route);
-  };
+    event.preventDefault()
+    navigate(route)
+  }
 
-  const handleClickLogout = (event) => {
-    logout();
-    dispatch(userLogout());
-  };
+  const handleClickLogout = event => {
+    logout()
+    dispatch(userLogout())
+  }
 
   return (
-
     <div style={{ height: '80px' }}>
-
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <button
@@ -88,9 +89,7 @@ export default function Navbar() {
               </Link>
 
               {!isAuthenticated ? (
-
                 ''
-
               ) : userLog.roleId === 1 ? (
                 <Link className="nav-link active" aria-current="page" to="/admin">
                   <li className="nav-item">Panel Admin</li>
@@ -124,71 +123,41 @@ export default function Navbar() {
               </li>
             </ul>
 
-            <SearchBar
-              dispatch={dispatch}
-              name={nameSearch}
-              setName={setNameSearch}
-              navigate={navigate}
-            />
+            <SearchBar dispatch={dispatch} name={nameSearch} setName={setNameSearch} navigate={navigate} />
 
             {isAuthenticated ? (
               <div className="d-flex align-items-center">
                 <div className="m-2">
                   <Avatar src={userDetails.avatar_url} />
                 </div>
-                <div className="dropdown">
-                  <button
-                    className="btn btn-secondary dropdown-toggle p-1"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <SettingsIcon />
                   </button>
-                  <ul className="dropdown-menu dropdown-menu-dark">
+                  <ul class="dropdown-menu dropdown-menu-dark">
                     <li>
-                      <a
-                        className="dropdown-item disabled"
-                        href=""
-                        onClick={(event) => navigateRoute(event, "/ordens")}
-                      >
+                      <a class="dropdown-item disabled" href="" onClick={event => navigateRoute(event, '/ordens')}>
                         {user && user.name}
                       </a>
                     </li>
                     <li>
-                      <hr className="dropdown-divider" />
+                      <hr class="dropdown-divider" />
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href=""
-                        onClick={(event) =>
-                          navigateRoute(event, "/user/orders")
-                        }
-                      >
+                      <a class="dropdown-item" href="" onClick={event => navigateRoute(event, '/user/orders')}>
                         Ordenes
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href=""
-                        onClick={(event) =>
-                          navigateRoute(event, "/user/profile")
-                        }
-                      >
+                      <a class="dropdown-item" href="" onClick={event => navigateRoute(event, '/user/profile')}>
                         Cuenta
                       </a>
                     </li>
                     <li>
-                      <hr className="dropdown-divider" />
+                      <hr class="dropdown-divider" />
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href=""
-                        onClick={(event) => handleClickLogout()}
-                      >
+                      <a class="dropdown-item" href="" onClick={event => handleClickLogout()}>
                         Desconectar
                       </a>
                     </li>
@@ -197,11 +166,7 @@ export default function Navbar() {
               </div>
             ) : (
               <div>
-                <button
-                  type="button"
-                  className="btn btn-primary p-1 mx-2"
-                  onClick={(event) => loginWithRedirect()}
-                >
+                <button type="button" class="btn btn-primary p-1 mx-2" onClick={event => loginWithRedirect()}>
                   Ingresar
                 </button>
               </div>

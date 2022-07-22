@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+
 import Card from '../cardProduct/CardProduct'
-import ReactPaginate from 'react-paginate'
+
 import './Pagination.css'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 
 export default function CardsFiltered() {
   const [pageNumber, setPageNumber] = useState(0)
@@ -12,29 +16,21 @@ export default function CardsFiltered() {
   const shoes = shoesFiltered.slice(pagesVisited, pagesVisited + usersPerPage)
   const pageCount = Math.ceil(shoesFiltered.length / usersPerPage)
 
-  const changePage = ({ selected }) => {
-    setPageNumber(selected)
+  const changePage = page => {
+    setPageNumber(page - 1)
   }
+
   return (
     <div className="App">
-      <div className="topPagination">
-        <div>{shoesFiltered.length} Resultados |</div>
-
-        <ReactPaginate
-          previousLabel={'⮘'}
-          nextLabel={'⮚'}
-          pageCount={pageCount}
-          onPageChange={changePage}
-          containerClassName={'paginationBttns'}
-          previousLinkClassName={'previousBttn'}
-          nextLinkClassName={'nextBttn'}
-          disabledClassName={'paginationDisabled'}
-          activeClassName={'paginationActive'}
-        />
-        <div>
-          | Pag. {pageNumber + 1} de {pageCount}
-        </div>
-      </div>
+      <Stack direction="row" spacing={12} sx={{ marginBottom: 2, alignItems: 'center' }}>
+        <Typography align="center">Resultados: {shoesFiltered.length}</Typography>
+        <Stack direction="row">
+          <Pagination count={pageCount} defaultPage={1} color="secondary" onChange={(event, page) => changePage(page)} />
+        </Stack>
+        <Typography align="center">
+          Pág. {pageNumber + 1} de {pageCount}
+        </Typography>
+      </Stack>
       <div className="container-fluid overflow-auto" style={{ height: '800px', width: '900px' }}>
         <div className="row">
           {shoes && shoes.length ? (
@@ -75,6 +71,15 @@ export default function CardsFiltered() {
           )}
         </div>
       </div>
+      <Stack direction="row" spacing={12} sx={{ marginBottom: 2, marginTop: 2, alignItems: 'center' }}>
+        <Typography align="center">Resultados: {shoesFiltered.length}</Typography>
+        <Stack direction="row">
+          <Pagination count={pageCount} defaultPage={1} color="secondary" onChange={(event, page) => changePage(page)} />
+        </Stack>
+        <Typography align="center">
+          Pág. {pageNumber + 1} de {pageCount}
+        </Typography>
+      </Stack>
     </div>
   )
 }
