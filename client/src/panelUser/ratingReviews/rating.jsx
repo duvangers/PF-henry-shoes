@@ -1,32 +1,36 @@
 import './list.scss'
 import Sidebar from '../components/sidebar/Sidebar'
 
-import CollapsibleTable from '../components/dataTable/Datatable2'
+import TableReviews from '../components/ratingReviews/table'
 import Navbar from '../components/navbar/Navbar'
+
 
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllOrdersUser } from '../../redux/actions/index'
+import { getAllUserReviews } from '../../redux/actions/index'
 
-const ListOrders = () => {
+
+const ListReviewsUser = () => {
   const dispatch = useDispatch()
   const userDetails = useSelector(state => state.UserLog)
 
   useEffect(() => {
-    dispatch(getAllOrdersUser(userDetails.id))
+    dispatch(getAllUserReviews(1))
   }, [dispatch, userDetails])
-  const OrdersUser = useSelector(state => state.OrdersUser)
-
-
+  const reviews = useSelector(state => state.ReviewsUser)
+  const Review = reviews.reviews
   return (
     <div className="list">
       <Sidebar />
       <div className="listContainer">
         <Navbar />
-        <CollapsibleTable Orders={OrdersUser} />
+         { Review ? (
+        <TableReviews reviews={Review} />
+        ): (<div> No hay Reviews Disponibles </div>)
+         }
       </div>
     </div>
   )
 }
 
-export default ListOrders
+export default ListReviewsUser

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react'
 
-import { getAllOrdersUser, updateUserDetails, getLogin } from '../../redux/actions'
+import { getAllOrdersUser, updateUserDetails, getLogin, getAllUserReviews } from '../../redux/actions'
 
 import Sidebar from '../components/sidebar/Sidebar'
 import Navbar from '../components/navbar/Navbar'
@@ -34,6 +34,7 @@ const UserDetail = () => {
 
   useEffect(() => {
     dispatch(getAllOrdersUser(userDetails.id))
+    dispatch(getAllUserReviews(1))
   }, [dispatch, userDetails])
 
   const { isAuthenticated, loginWithRedirect, user } = useAuth0()
@@ -51,7 +52,7 @@ const UserDetail = () => {
     if (!isAuthenticated) return loginWithRedirect()
 
     dispatch(updateUserDetails(details, userDetails.id))
-    dispatch(getLogin(user))
+    //dispatch(getLogin(user))
   }
 
   const handleChangeAvatar = async event => {
@@ -160,84 +161,6 @@ const UserDetail = () => {
       </div>
     </div>
   )
-
-  /*return (
-    <div className="single">
-      <Sidebar />
-      <div className="singleContainer">
-        <Navbar />
-        <div className="modal-content">
-          <div className="d-flex flex-column">
-            <h2>Perfil</h2>
-            <img className="rounded-5" src={userDetails.avatar_url} alt="img" />
-            <input />
-          </div>
-          <div className="top">
-            <h1>Mi Perfil</h1>
-            <div className="link">Editar</div>
-          </div>
-          <div className="bottom">
-            <div className="left">
-              <div className="item">
-                <h1 className="itemTitle">
-                  {OrdersUser.name} {OrdersUser.lastname}
-                </h1>
-                <img src={userDetails.avatar_url} alt="img" className="itemImg" />
-              </div>
-            </div>
-            <div className="right">
-              {<Chart aspect={3 / 1} title="User Spending ( Last 6 Months)" />}
-              <div className="details">
-                <h1 className="title">Información Personal</h1>
-                <div className="detailItem">
-                  <span className="itemKey">Email:</span>
-                  <span className="itemValue">{userDetails.email}</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Celular:</span>
-                  <span className="itemValue">{userDetails.phone}</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Dirección:</span>
-                  <span className="itemValue">{userDetails.adress}</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">País:</span>
-                  <span className="itemValue">{userDetails.country}</span>
-                </div>
-              </div>
-              <div className="details">
-                <h1 className="title">Información De Compra</h1>
-                <div className="detailItem">
-                  <span className="itemKey">Pago:</span>
-                  <span className="itemValue">PayPal</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Entrega en:</span>
-                  <span className="itemValue">{userDetails.adress}</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Envío:</span>
-                  <span className="itemValue">Henry Courier</span>
-                </div>
-                {/* <div className="detailItem">
-                  <span className="itemKey">País:</span>
-                  <span className="itemValue">USA</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Ciudad:</span>
-                  <span className="itemValue">Narnia</span>
-                </div>}
-              </div>
-            </div>
-          </div>
-        </div>
-        {<div className="bottom">
-          <h1 className="title">Last Transactions</h1>
-          <List/>
-        </div>}
-      </div>
-    </div>
-  )*/
 }
+
 export default UserDetail

@@ -22,7 +22,7 @@ const preUsers = () => {
   const json = require('../temporal-json/users.json')
 
   json.forEach(async value => {
-    const { dni, username, name, lastname, genre, email, phone, adress, country, avatar_url, rol } = value
+    const { dni, username, name, lastname, genre, email, email_verify, phone, adress, country, avatar_url, rol } = value
 
     try {
       const user = await modelUsers.create({
@@ -32,6 +32,7 @@ const preUsers = () => {
         lastname,
         genre,
         email,
+        email_verify,
         phone,
         adress,
         country,
@@ -291,5 +292,5 @@ setTimeout(preGenders, 3000)
 setTimeout(preRoles, 3000)
 setTimeout(preProducts, 6000)
 setTimeout(preUsers, 6000)
-setTimeout(preOrdens, 10000)
-setTimeout(preReviews, 10000)
+setTimeout(preOrdens, 15000)
+setTimeout(preReviews, 15000)

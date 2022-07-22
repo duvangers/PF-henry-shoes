@@ -22,7 +22,14 @@
       cursor: pointer;
     }
   }
-
+  .list {
+    display: flex;
+    width: 100%;
+    .listContainer {
+      flex: 6;
+      min-height: 100vh;
+    }
+  }
   .cellWithImg {
     display: flex;
     align-items: center;
@@ -36,26 +43,21 @@
     }
   }
 
-  .status {
+  .cellWithStatus {
     padding: 5px;
     border-radius: 5px;
 
-    &.Approved {
-      color: rgb(26, 26, 245);
-      background-color: rgba(0, 9, 128, 0.151);
-    }
-
-    &.Pending {
-      color: rgb(206, 154, 23);
-      background-color: rgba(189, 173, 3, 0.103);
-    }
-    &.Finished {
+    &.active {
+      background-color: rgba(0, 128, 0, 0.05);
       color: green;
-      background-color: rgba(0, 128, 0, 0.151);
     }
-    &.Rejected {
-      color: red;
-      background-color: rgba(189, 12, 3, 0.214);
+    &.pending {
+      background-color: rgba(255, 217, 0, 0.05);
+      color: goldenrod;
+    }
+    &.passive {
+      background-color: rgba(255, 0, 0, 0.05);
+      color: crimson;
     }
   }
 
@@ -80,4 +82,5 @@
       cursor: pointer;
     }
   }
+
 }

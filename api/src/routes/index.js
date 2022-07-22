@@ -11,6 +11,11 @@ const { getOrdens, createOrden, updateOrden, getOrdensUser } = require('../contr
 const { getReviews, createReview, updateReview, getReviewsProduct, getReviewsUser } = require('../controllers/reviews')
 const { getUsers, updateUser, getUserDetails, loginUser } = require('../controllers/users')
 const { sendNotification } = require('../controllers/notification')
+const { getPayment } = require('../controllers/Payments')
+// const { getPaymentLink } = require('..controller/PaymentController')
+// const PaymentController = require('../controllers/PaymentsController')
+// const PaymentService = require("../services/PaymentService");
+// const PaymentInstance = new PaymentController(new PaymentService());
 
 const routes = Router()
 
@@ -65,5 +70,12 @@ routes.get('/userDetails/:userId', getUserDetails)
 routes.post('/login', loginUser)
 
 routes.post('/send-email', sendNotification)
+
+// routes.get('/payment', function (req, res, next) {
+//     console.log("S")
+//     PaymentInstance.getPaymentLink(req, res);
+//   });
+
+routes.post('/payment', getPayment)
 
 module.exports = routes

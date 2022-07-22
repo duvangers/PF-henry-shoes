@@ -22,4 +22,10 @@ app.use((req, res, next) => {
 
 app.use('/api', routes)
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../..', 'client', 'build', 'index.html'))
+})
+
+app.disable('etag')
+
 module.exports = app

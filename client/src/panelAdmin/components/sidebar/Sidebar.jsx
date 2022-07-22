@@ -15,8 +15,16 @@ import { Link } from "react-router-dom";
 // import { DarkModeContext } from "../../context/darkModeContext";
 // import { useContext } from "react";
 import logotoro from "../../../logotoro.png";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch } from "react-redux";
+import { userLogout } from "../../../redux/actions";
 const Sidebar = () => {
-  // const { dispatch } = useContext(DarkModeContext);
+  const { user, isAuthenticated, isLoading, logout } = useAuth0();
+  const dispatch = useDispatch();
+  const handleClickLogout = () => {
+    logout();
+    dispatch(userLogout());
+  };
   return (
     <div className="sidebar">
       <div className="top">
@@ -101,12 +109,12 @@ const Sidebar = () => {
               <span>Perfil</span>
             </li>
           </Link>
-          {/* <Link to="/admin/logout" style={{ textDecoration: "none" }}>
-            <li>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <li onClick={(event) => handleClickLogout()}>
               <ExitToAppIcon className="icon" />
               <span>Salir</span>
             </li>
-          </Link> */}
+          </Link>
         </ul>
       </div>
       {/* <div className="bottom">
