@@ -46,6 +46,19 @@ export const getAllUserReviews = (id) => {
     }
   };
 };
+export const getAllProductReviews = (id) => {
+  return async function (dispatch) {
+    try {
+      let info = await Axios(`/reviewsProduct/${id}`);
+      return dispatch({
+        type: actionTypes.GET_ALL_PRODUCT_REVIEWS,
+        payload: info.data,
+      });
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+};
 export const getAllOrdersUser = (id) => {
   return async function (dispatch) {
     try {

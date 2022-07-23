@@ -6,8 +6,9 @@ import {
   CleanStateDetail,
   addCarrito,
 } from "../../redux/actions";
+import Reviews from "./Comentarios/comentarios"
 import Loading from "../loading/loading.jsx";
-import Footer from "../footer/footer";
+// import Footer from "../footer/footer";
 import FormReview from "./FormReview";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -257,8 +258,9 @@ export default function ProductDetail() {
       ) : (
         <Loading />
       )}
+      <Reviews id={id} />
       <div className="container-fluid title-reviews">
-        <h1>Reseñas</h1>
+        <h1>.</h1>
         {/* <Button variant="outlined" startIcon={<ExpandLess />}>
           <p> Cancelar Reseña</p>
         </Button> */}
