@@ -10,6 +10,7 @@ const initialState = {
   Orders: [],
   OrdersUser: [],
   ReviewsUser: [],
+  ProductReviews: [],
   Shoes: [],
   Filters: [],
   backupFilters: [],
@@ -48,6 +49,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         ReviewsUser: action.payload,
       }
+      case actionTypes.GET_ALL_PRODUCT_REVIEWS:
+        return {
+          ...state,
+          ProductReviews: action.payload,
+        }
     case actionTypes.GET_ALL_SHOES:
       return {
         ...state,
