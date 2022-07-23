@@ -26,7 +26,7 @@ export function Questions() {
                     aria-expanded="false"
                     aria-controls={`panelsStayOpen-collapse${q.id}`}
                   >
-                    {q.question}
+                  <strong>{q.question}</strong>  
                   </button>
                 </h2>
                 <div
